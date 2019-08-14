@@ -1,6 +1,7 @@
 Pré requisito
 ------------
 
+* PHP >= 7.3
 * [Composer](https://getcomposer.org/download/ "Composer")
 * MySQL ou algum banco de dados relacional
 * Instalar o laravel:
