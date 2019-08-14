@@ -2,15 +2,32 @@
 @section('content')
 <div class="card-header"><i class="fa fa-group"></i> Marcas</div>
 <div class="card-body">
+    {!! Form::open(['method'=>'GET','url'=>'marcas'])  !!}
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('marcas.create') }}">
-                    <i class="fa fa-plus"></i> Nova marca
-                </a>
+        <div class="col-md-3">
+            <div class="form-group required">
+                <label>Código</label>
+                {!! Form::text('codigo_identificacao', $request->codigo_identificacao, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group required">
+                <label>Nome</label>
+                {!! Form::text('nome', $request->nome, ['class' => 'form-control']) !!}
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i> Buscar
+            </button>
+            <a class="btn btn-success" href="{{ route('marcas.create') }}">
+                <i class="fa fa-plus"></i> Nova marca
+            </a>
+        </div>
+    </div>
+    {!! Form::close() !!}
 
     <table class="table table-bordered" style="margin-top: 20px;">
         <tr>

@@ -15,8 +15,8 @@ class MarcaController extends Controller
     public function index(Request $request)
     {
         $query = Marca::query();
-        if (!empty($request->codigo)) {
-            $query->where('codigo', 'like', '%' . $request->codigo . '%');
+        if (!empty($request->codigo_identificacao)) {
+            $query->where('codigo_identificacao', 'like', '%' . $request->codigo_identificacao . '%');
         }
 
         if (!empty($request->nome)) {
