@@ -53,7 +53,7 @@
                             Foram encontrados alguns problemas no formulário:<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>{!! $error !!}</li>
                                 @endforeach
                             </ul>
                         </div>

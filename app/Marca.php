@@ -46,7 +46,7 @@ class Marca extends Model
         }
     }
 
-    protected function rules()
+    public function rules()
     {
         return [
             'codigo_identificacao' => 'required',

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Marca;
+use App\Repositories\Marca\MarcaRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class MarcaController extends Controller
 {
@@ -46,24 +48,13 @@ class MarcaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, MarcaRepository $repository)
     {
-        $this->validate($request, $this->rules());
-        $marca = new Marca();
-        $marca->fill($request->all());
-        $marca->saveOrFail();
-        return redirect()->route('marcas.index')->with('success', 'Marca criada com sucesso.');
-    }
-
-    protected function rules()
-    {
-        return [
-            'codigo_identificacao' => 'required',
-            'nome' => 'required|min:2',
-            'cpf' => 'required|min:11|max:11',
-            'data_registro' => 'required',
-            'email' => 'required|email',
-        ];
+        if ($repository->criaOuAtualizaMarca($request->all())) {
+            return redirect()->route('marcas.index')->with('success', 'Marca criada com sucesso.');
+        } else {
+            return redirect()->back()->withInput(Input::all())->withErrors('Erro ao criar marca. ' . $repository->getError());
+        }
     }
 
     /**
@@ -95,12 +86,13 @@ class MarcaController extends Controller
      * @param  \App\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, Marca $marca, MarcaRepository $repository)
     {
-        $this->validate($request, $this->rules($marca));
-        $marca->fill($request->all());
-        $marca->saveOrFail();
-        return redirect()->route('marcas.index')->with('success', 'Marca atualizada com sucesso.');
+        if ($repository->criaOuAtualizaMarca($request->all(), $marca)) {
+            return redirect()->route('marcas.index')->with('success', 'Marca atualizada com sucesso.');
+        } else {
+            return redirect()->back()->withInput(Input::all())->withErrors('Erro ao atualizar marca. ' . $repository->getError());
+        }
     }
 
     /**
