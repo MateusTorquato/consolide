@@ -45,4 +45,15 @@ class Marca extends Model
             return '(' . substr($telefone, 0, 2) . ') ' . substr($telefone, 2, 4) . '-' . substr($telefone, 6, 4);
         }
     }
+
+    protected function rules()
+    {
+        return [
+            'codigo_identificacao' => 'required',
+            'nome' => 'required|min:2',
+            'cpf' => 'required|min:11|max:11',
+            'data_registro' => 'required',
+            'email' => 'required|email',
+        ];
+    }
 }
