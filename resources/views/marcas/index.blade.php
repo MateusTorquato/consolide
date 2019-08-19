@@ -28,34 +28,35 @@
         </div>
     </div>
     {!! Form::close() !!}
-
-    <table class="table table-bordered" style="margin-top: 20px;">
-        <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th>Data registro</th>
-            <th width="280px">Ações</th>
-        </tr>
-        @foreach ($marcas as $marca)
+    <div class="table-responsive">
+        <table class="table table-bordered" style="margin-top: 20px;">
             <tr>
-                <td>{{ $marca->codigo_identificacao}}</td>
-                <td>{{ $marca->nome}}</td>
-                <td>{{ $marca->cpf}}</td>
-                <td>{{ $marca->telefone}}</td>
-                <td>{{ $marca->email}}</td>
-                <td>{{ formataData($marca->data_registro)}}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ route('marcas.edit',$marca->id) }}">Editar</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['marcas.destroy', $marca->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                </td>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Data registro</th>
+                <th width="280px">Ações</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($marcas as $marca)
+                <tr>
+                    <td>{{ $marca->codigo_identificacao}}</td>
+                    <td>{{ $marca->nome}}</td>
+                    <td>{{ $marca->cpf}}</td>
+                    <td>{{ $marca->telefone}}</td>
+                    <td>{{ $marca->email}}</td>
+                    <td>{{ formataData($marca->data_registro)}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('marcas.edit',$marca->id) }}">Editar</a>
+                        {!! Form::open(['method' => 'DELETE','route' => ['marcas.destroy', $marca->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
 
     {!! $marcas->links() !!}
 </div>
