@@ -1,6 +1,8 @@
 Teste que eu fiz para a consolide em Laravel. Solicitaram posteriormente para fazer o mesmo teste usando yii2, segue o link:
 https://github.com/MateusTorquato/consolide-yii2
 
+Link para o projeto rodando: https://consolide-sua-marca.herokuapp.com/
+
 Pré requisito
 ------------
 
